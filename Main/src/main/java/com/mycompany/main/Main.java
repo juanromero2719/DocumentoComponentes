@@ -10,33 +10,45 @@ package com.mycompany.main;
  */
 
 
-import Fabrica.DocumentoFabrica;
+import Fabrica.DocumentoBuilder;
 import Fabrica.DocumentoFabrica.TipoDocumento;
 import Interfaces.Documento;
 
 public class Main {
  
     public static void cargarDocumentos(){
+        
+        System.out.println("-----------------------------------------");
     
-        Documento documentoPDF = DocumentoFabrica.crearDocumento(TipoDocumento.PDF);
-        documentoPDF.setContenido("...PDF...PDF...PDF...");
-        documentoPDF.dibujar();
-        documentoPDF.imprimir();
+        Documento documento = new DocumentoBuilder()
+                .conTipo(TipoDocumento.PDF)
+                .conContenido("...PDF...PDF...PDF...")
+                .build();
 
-        System.out.println("\n-------------------------\n");
+        documento.dibujar();
+        documento.imprimir();
+        
+        System.out.println("-----------------------------------------");
+        
+        documento = new DocumentoBuilder()
+                .conTipo(TipoDocumento.HTML)
+                .conContenido("<HMTL></HMTL>")
+                .build();
 
-        Documento documentoHTML = DocumentoFabrica.crearDocumento(TipoDocumento.HTML);
-        documentoHTML.setContenido("<HMTL></HMTL>");
-        documentoHTML.dibujar();
-        documentoHTML.imprimir();
+        documento.dibujar();
+        documento.imprimir();
+        
+        System.out.println("-----------------------------------------");
+        
+        documento = new DocumentoBuilder()
+                .conTipo(TipoDocumento.TEXTO_PLANO)
+                .conContenido("...texto...")
+                .build();
 
-        System.out.println("\n-------------------------\n");
-
-
-        Documento documentoTEXTO = DocumentoFabrica.crearDocumento(TipoDocumento.TEXTO_PLANO);
-        documentoTEXTO.setContenido("...texto...");
-        documentoTEXTO.dibujar();
-        documentoTEXTO.imprimir();
+        documento.dibujar();
+        documento.imprimir();
+        
+        System.out.println("-----------------------------------------");
     }
     
     public static void main(String[] args) {
